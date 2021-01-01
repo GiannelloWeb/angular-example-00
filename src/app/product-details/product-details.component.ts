@@ -30,6 +30,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     status: false
   };
   watcher = 0;
+  watcherStat = true;
   getLocation(act) {
     if (act === "on") {
       console.log("geolocation On");
@@ -47,6 +48,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
             code: 0,
             status: false
           };
+          this.watcherStat= false;
           console.log(position.coords.heading, position.coords.speed);
         },
         err => {
@@ -80,7 +82,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe(params => {
       this.product = products[+params.get("productId")];
     });
-    this.getLocation("on");
   }
   ngOnDestroy() {
     this.getLocation("off");
