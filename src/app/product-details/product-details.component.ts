@@ -39,12 +39,14 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           });
           this.err = {
             msg: "",
+            code: 0,
             status: false
           };
         },
         err => {
           this.err = {
             msg: err.message,
+            code: err.code,
             status: true
           };
         },
