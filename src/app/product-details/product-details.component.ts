@@ -19,7 +19,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     {
       lat: 0,
       lon: 0,
-      time: 0
+      time: 0,
+      accuracy: 0
     }
   ];
   err = {
@@ -36,13 +37,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           this.coords.push({
             lat: position.coords.latitude,
             lon: position.coords.longitude,
-            time: position.timestamp
+            time: position.timestamp,
+            accuracy: position.coords.accuracy
           });
           this.err = {
             msg: "",
             code: 0,
             status: false
           };
+          console.log(position.coords.heading, position.coords.speed);
           
 
         },
