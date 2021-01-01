@@ -12,8 +12,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   product;
   options = {
     enableHighAccuracy: true,
-    timeout: 15000,
-    maximumAge: 5000
+    timeout: 0,
+    maximumAge: 0
   };
   coords = [
     {
