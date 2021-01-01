@@ -10,6 +10,20 @@ import { CartService } from "../cart.service";
 })
 export class ProductDetailsComponent implements OnInit {
   product;
+  options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+coords = [{
+  lat: 0,
+  lon: 0,
+  time: 0
+}];
+err = {
+  msg: '',
+  status: false
+}
 
   addToCart(product) {
     window.alert("Your " + product.name + " has been added to the cart!");
