@@ -24,6 +24,27 @@ err = {
   msg: '',
   status: false
 }
+watcher = 0;
+getLocation(){
+  this.watcher = window.navigator.geolocation.watchPosition((position)=>{
+    this.coords.push({
+      lat: position.coords.latitude,
+      lon: position.coords.longitude,
+      time: position.timestamp
+    });
+    this.err={
+      msg: '',
+      status: false
+    }
+
+  }, (err)=>{
+    this.err = {
+      msg: err.message,
+      status: true
+    }
+
+  }, this.options)
+}
 
   addToCart(product) {
     window.alert("Your " + product.name + " has been added to the cart!");
