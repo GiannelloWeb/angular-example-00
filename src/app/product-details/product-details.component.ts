@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { products } from "../products";
 import { CartService } from "../cart.service";
@@ -8,7 +8,7 @@ import { CartService } from "../cart.service";
   templateUrl: "./product-details.component.html",
   styleUrls: ["./product-details.component.css"]
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
   product;
   options = {
     enableHighAccuracy: true,
@@ -24,30 +24,35 @@ export class ProductDetailsComponent implements OnInit {
   ];
   err = {
     msg: "",
+    code: 0,
     status: false
   };
   watcher = 0;
-  getLocation() {
-    this.watcher = window.navigator.geolocation.watchPosition(
-      position => {
-        this.coords.push({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-          time: position.timestamp
-        });
-        this.err = {
-          msg: "",
-          status: false
-        };
-      },
-      err => {
-        this.err = {
-          msg: err.message,
-          status: true
-        };
-      },
-      this.options
-    );
+  getLocation(act) {
+    if (act === "on") {
+      this.watcher = window.navigator.geolocation.watchPosition(
+        position => {
+          this.coords.push({
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+            time: position.timestamp
+          });
+          this.err = {
+            msg: "",
+            status: false
+          };
+        },
+        err => {
+          this.err = {
+            msg: err.message,
+            status: true
+          };
+        },
+        this.options
+      );
+    } else if (act === "off") {
+      window.navigator.geolocation.clearWatch(this.watcher);
+    }
   }
 
   addToCart(product) {
@@ -65,6 +70,10 @@ export class ProductDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.product = products[+params.get("productId")];
     });
+    this.getLocation("on");
+  }
+  ngOnDestroy() {
+    this.getLocation("off");
   }
 }
 /*+params.get("productId")*/

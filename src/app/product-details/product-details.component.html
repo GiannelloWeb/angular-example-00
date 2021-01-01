@@ -8,6 +8,10 @@
 	<button (click)="addToCart(product)">
     Add to Cart
   </button>
+  <div *ngIf="err.status">{{err.msg}}, {{err.code}}</div>
+  <div *ngFor="let coord of coords">
+    {{coord.lat}}, {{coord.lon}}
+  </div>
 
 
 
