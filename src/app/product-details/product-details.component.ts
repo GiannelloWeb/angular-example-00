@@ -42,6 +42,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
             code: 0,
             status: false
           };
+          console.log('geolocation On');
+
         },
         err => {
           this.err = {
@@ -49,6 +51,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
             code: err.code,
             status: true
           };
+                console.error('geolocation error', err.message);
+
         },
         this.options
       );
