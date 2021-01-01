@@ -20,7 +20,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       lat: 0,
       lon: 0,
       time: 0,
-      accuracy: 0
+      accuracy: 0,
+      speed: 0
     }
   ];
   err = {
@@ -31,14 +32,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   watcher = 0;
   getLocation(act) {
     if (act === "on") {
-      console.log('geolocation On');
+      console.log("geolocation On");
       this.watcher = window.navigator.geolocation.watchPosition(
         position => {
           this.coords.push({
             lat: position.coords.latitude,
             lon: position.coords.longitude,
             time: position.timestamp,
-            accuracy: position.coords.accuracy
+            accuracy: position.coords.accuracy,
+            speed: position.coords.speed
           });
           this.err = {
             msg: "",
@@ -46,8 +48,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
             status: false
           };
           console.log(position.coords.heading, position.coords.speed);
-          
-
         },
         err => {
           this.err = {
@@ -55,14 +55,13 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
             code: err.code,
             status: true
           };
-                console.error('geolocation error', err.message);
-
+          console.error("geolocation error", err.message);
         },
         this.options
       );
     } else if (act === "off") {
       window.navigator.geolocation.clearWatch(this.watcher);
-      console.log('geolocation off');
+      console.log("geolocation off");
     }
   }
 
