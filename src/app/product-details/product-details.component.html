@@ -11,6 +11,9 @@
   <button *ngIf="watcherStat" (click)="getLocation('on')">
     Iniciar Recorrido
   </button>
+  <button *ngIf="watcherStat" (click)="getLocation('off')">
+    Detener / Pausar
+  </button>
   <div *ngIf="err.status">{{err.msg}}, {{err.code}}</div>
   <div *ngFor="let coord of coords">
     lat: {{coord.lat}}, Long: {{coord.lon}}, Acc: {{coord.accuracy}}, Speed: {{coord.speed}}
