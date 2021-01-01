@@ -54,6 +54,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       );
     } else if (act === "off") {
       window.navigator.geolocation.clearWatch(this.watcher);
+      console.log('geolocation off');
     }
   }
 
