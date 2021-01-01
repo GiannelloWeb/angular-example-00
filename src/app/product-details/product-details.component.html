@@ -10,7 +10,7 @@
   </button>
   <div *ngIf="err.status">{{err.msg}}, {{err.code}}</div>
   <div *ngFor="let coord of coords">
-    {{coord.lat}}, {{coord.lon}}
+    lat: {{coord.lat}}, Long: {{coord.lon}}, Acc: {{coord.accuracy}}, Speed: {{coord.speed}}
   </div>
 
 
