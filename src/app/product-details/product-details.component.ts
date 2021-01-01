@@ -30,6 +30,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   watcher = 0;
   getLocation(act) {
     if (act === "on") {
+      console.log('geolocation On');
       this.watcher = window.navigator.geolocation.watchPosition(
         position => {
           this.coords.push({
@@ -42,7 +43,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
             code: 0,
             status: false
           };
-          console.log('geolocation On');
+          
 
         },
         err => {
