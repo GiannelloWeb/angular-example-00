@@ -8,10 +8,10 @@
 	<button (click)="addToCart(product)">
     Add to Cart
   </button>
-  <button *ngIf="watcherStat" (click)="getLocation('on')">
+  <button *ngIf="watcherStat?false:true" (click)="getLocation('on')">
     Iniciar Recorrido
   </button>
-  <button *ngIf="watcherStat" (click)="getLocation('off')">
+  <button *ngIf="watcherStat?true:false" (click)="getLocation('off')">
     Detener / Pausar
   </button>
   <div *ngIf="err.status">{{err.msg}}, {{err.code}}</div>
