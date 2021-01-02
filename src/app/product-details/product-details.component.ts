@@ -34,7 +34,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   getLocation(act) {
     if (act === "on") {
       console.log("geolocation On");
-      this.watcherStat= true;
+      this.watcherStat = true;
       this.watcher = window.navigator.geolocation.watchPosition(
         position => {
           this.coords.push({
@@ -49,7 +49,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
             code: 0,
             status: false
           };
-          
+
           console.log(position.coords.heading, position.coords.speed);
         },
         err => {
@@ -65,7 +65,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     } else if (act === "off") {
       window.navigator.geolocation.clearWatch(this.watcher);
       console.log("geolocation off");
-      this.watcherStat= false;
+      this.watcherStat = false;
     }
   }
 
@@ -84,6 +84,11 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe(params => {
       this.product = products[+params.get("productId")];
     });
+    if ("wakeLock" in navigator) {
+      console.log("Screen Wake Lock API supported!");
+    } else {
+      console.log("Wake lock is not supported by this browser.");
+    }
   }
   ngOnDestroy() {
     this.getLocation("off");

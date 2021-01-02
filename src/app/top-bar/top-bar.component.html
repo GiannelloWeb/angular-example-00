@@ -1,5 +1,6 @@
 <a [routerLink]="['/']">
   <h1>My Store</h1>
+  <h6 *ngIf="isSuported">No Soporta WakeLock</h6>
 </a>
 
 <a [routerLink]="['/cart']" class="button fancy-button"><i class="material-icons">shopping_cart</i>Checkout</a>

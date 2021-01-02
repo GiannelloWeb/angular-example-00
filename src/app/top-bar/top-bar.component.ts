@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
-
+isSuported;
   constructor() { }
 
   ngOnInit() {
+
+     if ("wakeLock" in navigator) {
+       this.isSuported=false;
+      console.log("Screen Wake Lock API supported!");
+    } else {
+      this.isSuported=true;
+      console.log("Wake lock is not supported by this browser.");
+    }
   }
 
 }
