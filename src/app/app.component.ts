@@ -6,8 +6,12 @@ import { Meta, Title } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent extends OnInit {
-  constructor(private title: Title, private meta: Meta) {}
+export class AppComponent implements OnInit {
+  
+  constructor(private title: Title, private meta: Meta) {
+
+}
+  
   ngOnInit() {
     this.title.setTitle('My title');
     this.meta.addTag({ property: 'og:title', content: 'My title' }, true);
