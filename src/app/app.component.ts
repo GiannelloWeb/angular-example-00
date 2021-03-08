@@ -5,7 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent  {}
+export class AppComponent extends OnInit {
+  constructor(private title: Title, private meta: Meta) {}
+  ngOnInit() {
+    this.title.setTitle('My title');
+    this.meta.addTag({ property: 'og:title', content: 'My title' }, true);
+  }
+}
 
 
 /*
