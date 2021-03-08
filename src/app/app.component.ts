@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   
   ngOnInit() {
     this.title.setTitle('My title');
-    this.meta.addTag({ property: 'og:title', content: 'My title' }, true);
+    this.meta.addTag({ name: 'description', content: 'My description title' }, true);
   }
 }
 
